@@ -53,6 +53,12 @@ eps_fill(eps_3, SERIA_3)
 eps_fill(eps_4, SERIA_4)
 eps_fill(eps_5, SERIA_5)
 
+print(f"Eps1 = {eps_1}")
+print(f"Eps2 = {eps_2}")
+print(f"Eps3 = {eps_3}")
+print(f"Eps4 = {eps_4}")
+print(f"Eps5 = {eps_5}")
+
 def avg_eps_fill(s_1, s_2, s_3, s_4, s_5):
     e = 4
     for i in range(0, 5):
@@ -69,7 +75,7 @@ def func(x):
     return x**3 + 1
 
 
-def calc_integral(a, b, f, ExpNmb):
+def CALC_INTEGRAL(a, b, f, ExpNmb):
     x_min, x_max, y_min, y_max = a, b, 0, f(b)
     m = 0
     for exp in range(ExpNmb):
@@ -84,7 +90,7 @@ def calc_integral(a, b, f, ExpNmb):
 
 def seria_integral_fill(seria_list):
     for i in range(4, 9):
-        seria_list.append(calc_integral(0, 2, func, 10 ** i))
+        seria_list.append(CALC_INTEGRAL(0, 2, func, 10 ** i))
 
 SERIA_1, SERIA_2, SERIA_3, SERIA_4, SERIA_5 = list(), list(), list(), list(), list()
 seria_integral_fill(SERIA_1)
@@ -105,5 +111,11 @@ eps_fill(eps_2, SERIA_2)
 eps_fill(eps_3, SERIA_3)
 eps_fill(eps_4, SERIA_4)
 eps_fill(eps_5, SERIA_5)
+
+print(f"Eps1 = {eps_1}")
+print(f"Eps2 = {eps_2}")
+print(f"Eps3 = {eps_3}")
+print(f"Eps4 = {eps_4}")
+print(f"Eps5 = {eps_5}")
 
 avg_eps_fill(eps_1, eps_2, eps_3, eps_4, eps_5)

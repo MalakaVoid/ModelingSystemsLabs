@@ -11,8 +11,7 @@ m = 2 ** 32
 #---------------- END ----------------------
 
 #---------------- TASK 2 -------------------
-def task_2_func(a, b, m, RNumsArr, RParamsArr, counter):
-    x_0 = 1
+def task_2_func(x_0, a, b, m, RNumsArr, RParamsArr, counter):
     A = 0
     B = 10
     N = 10**counter
@@ -36,19 +35,19 @@ B = 10
 
 RNumsArr_e2 = list()
 RParamsArr_e2 = list()
-task_2_func(a, b, m, RNumsArr_e2, RParamsArr_e2, 2)
+task_2_func(x_0, a, b, m, RNumsArr_e2, RParamsArr_e2, 2)
 
 RNumsArr_e3 = list()
 RParamsArr_e3 = list()
-task_2_func(a, b, m, RNumsArr_e3, RParamsArr_e3, 3)
+task_2_func(x_0, a, b, m, RNumsArr_e3, RParamsArr_e3, 3)
 
 RNumsArr_e4 = list()
 RParamsArr_e4 = list()
-task_2_func(a, b, m, RNumsArr_e4, RParamsArr_e4, 4)
+task_2_func(x_0, a, b, m, RNumsArr_e4, RParamsArr_e4, 4)
 
 RNumsArr_e5 = list()
 RParamsArr_e5 = list()
-task_2_func(a, b, m, RNumsArr_e5, RParamsArr_e5, 5)
+task_2_func(x_0, a, b, m, RNumsArr_e5, RParamsArr_e5, 5)
 #----------------------- END --------------------------
 print()
 #---------------------- TASK 3 ------------------------

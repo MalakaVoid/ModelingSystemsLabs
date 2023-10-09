@@ -67,7 +67,7 @@ def avg_eps_fill(s_1, s_2, s_3, s_4, s_5):
         print(f'Eps_S_e{e} = {eps_s_e}')
         e += 1
 
-avg_eps_fill(eps_1, eps_2, eps_3, eps_4, eps_5)
+avg_eps_fill(SERIA_1, SERIA_2, SERIA_3, SERIA_4, SERIA_5)
 #-------------------- END ---------------------------
 
 #------------------ TASK 4 ------------------------------
@@ -118,4 +118,4 @@ print(f"Eps3 = {eps_3}")
 print(f"Eps4 = {eps_4}")
 print(f"Eps5 = {eps_5}")
 
-avg_eps_fill(eps_1, eps_2, eps_3, eps_4, eps_5)
+avg_eps_fill(SERIA_1, SERIA_2, SERIA_3, SERIA_4, SERIA_5)

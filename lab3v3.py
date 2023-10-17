@@ -41,15 +41,9 @@ plt.show()
 #-------------------Task 2-----------------------
 m = 10
 o = 2
-
-# Генерация значений для x (значения, для которых будет вычисляться функция распределения)
-#x = np.linspace(0, 20, 100)
 x = np.random.uniform(0, 20, 100)
 x.sort()
-# Вычисление значений функции распределения для каждого значения x
 y = norm.cdf(x, loc=m, scale=o)
-
-# Построение графика функции распределения
 plt.plot(x, y)
 plt.xlabel('Значение')
 plt.ylabel('Функция распределения')
@@ -73,12 +67,11 @@ def inverse_transform_sampling(n):
     return inverse_func
 
 N = [10**2, 10**3, 10**4, 10**5]
-
-arr = []
-# Моделирование и построение гистограмм
+experiments = []
 for n in N:
     samples = inverse_transform_sampling(n)
-    arr.append(samples)
+    experiments.append(samples)
+    print(f"Для количества экспериментов {n}:")
     print(samples[0:10])
 
 #-------------------Task 4-----------------------
@@ -86,17 +79,16 @@ for n in N:
 num_bins = 100
 tmp = 2
 # Моделирование и построение гистограмм
-for samples in arr:
+for samples in experiments:
     # Вычисление гистограммы относительных частот
     hist, bins = np.histogram(samples, bins=num_bins, density=True)
     bin_width = bins[1] - bins[0]
     hist = hist / ((10**tmp) * bin_width)
     # Построение гистограммы относительных частот
-    plt.bar(bins[:-1], hist, width=bin_width, alpha=0.5, label=f'N = {10**tmp}')
+    plt.bar(bins[:-1], hist, width=bin_width, alpha=0.5)
     plt.xlabel('Значение')
     plt.ylabel('Относительная частота')
-    plt.title('Гистограмма относительных частот для моделирования нормального распределения')
-    plt.legend()
+    plt.title(f'Гистограмма относительных частот для {10**tmp}')
     plt.grid(True)
     plt.show()
     tmp+=1
@@ -105,7 +97,7 @@ for samples in arr:
 
 mse = []
 tmp =2
-for samples in arr:
+for samples in experiments:
     hist, bins = np.histogram(samples, bins=num_bins, density=True)
     bin_width = bins[1] - bins[0]
     hist = hist / ((10**tmp) * bin_width)

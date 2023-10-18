@@ -114,16 +114,14 @@ def get_time_in_buffer_together(arrivals, buffers):
 
 
 time_in_buffer_each = get_programs_time_in_buffer(T_Z, T_S)
-buffers_pt_time = get_time_in_buffer_together(T_Z, time_in_buffer_each)
+print("Время в буфере каждой программы")
+print(time_in_buffer_each)
+print()
 
+buffers_pt_time = get_time_in_buffer_together(T_Z, time_in_buffer_each)
 print("Время в буфере нескольких программ одновременно")
 for i in range(1, len(buffers_pt_time)):
     print(f"{i} программ одновременно: {buffers_pt_time[i]}")
-
-print()
-print("Время в буфере каждой программы")
-print(time_in_buffer_each)
-
 
 #------------------- TASK 5 ---------------------------
 print("------------------- TASK 5 ---------------------------")
@@ -150,8 +148,8 @@ print("------------------- TASK 6 ---------------------------")
 def generate_requests_sequence(n, lambda_param):
     requests_sequence = []
     for _ in range(n):
-        u = random.random()  # генерация случайного числа U из равномерного распределения [0, 1)
-        x = -math.log(1 - u) / lambda_param  # рассчитываем значение X согласно обратной функции
+        u = random.random()
+        x = -math.log(1 - u) / lambda_param
         requests_sequence.append(x)
     requests_sequence.sort()
     return requests_sequence
@@ -166,8 +164,8 @@ print(requests_sequence)
 def generate_processing_times_sequence(n, mu_param):
     processing_times_sequence = []
     for _ in range(n):
-        u = random.random()  # генерация случайного числа U из равномерного распределения [0, 1)
-        x = -math.log(1 - u) / mu_param  # рассчитываем значение X согласно обратной функции
+        u = random.random()
+        x = -math.log(1 - u) / mu_param
         processing_times_sequence.append(x)
     return processing_times_sequence
 

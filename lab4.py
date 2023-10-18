@@ -4,6 +4,13 @@ import math
 
 #------------- TASK 1 -------------------
 print("------------- TASK 1 -------------------")
+def generate_sequence(length, a, b, M, x0):
+    sequence = [x0]
+    for i in range(1, length):
+        sequence.append(math.fmod(a*sequence[i-1] + b, M))
+    sequence.sort()
+    return sequence
+
 TZmin = 4
 TZmax = 12
 a_TZ = 39
@@ -14,13 +21,6 @@ x0 = 1
 TSmin = 2
 TSmax = 8
 a_TS = 39
-
-def generate_sequence(length, a, b, M, x0):
-    sequence = [x0]
-    for i in range(1, length):
-        sequence.append(math.fmod(a*sequence[i-1] + b, M))
-    sequence.sort()
-    return sequence
 
 X_TZ = generate_sequence(10, a_TZ, b, M, x0)
 X_TS = generate_sequence(10, a_TS, b, M, x0)
@@ -77,15 +77,53 @@ def get_programs_time_in_buffer(arrival_times, proccesing_times):
     for i in range(0, len(arrival_times)):
         time_in_buffer = all_time_of_start_computing[i] - arrival_times[i]
         time_in_buffer_each.append(time_in_buffer)
-
     return time_in_buffer_each
 
 #------------------ TASK 4 ----------------------------
 print("------------------ TASK 4 ----------------------------")
+#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+#Возник вопрос, нужно ли делать то что я снизу делаю
+#Нужно ли расчитывать время нахождения одной, двух и тд программ в буфере одновременно или нужно просто время
+#нахождения в буфере просто каждой программы
+def get_time_in_buffer_together(arrivals, buffers):
+    count_of_programs = 1
+    buffers_pr_time = [0 for i in range(0, 10)]
+    arrival = 0
+    exit_time = 0
+    for i in range(0, len(arrivals)):
+        if exit_time > arrivals[i]:
+            arrival = exit_time
+        else:
+            arrival = arrivals[i]
+
+        count_of_programs = 0
+
+        if buffers[i] != 0:
+            count_of_programs = 1
+
+        exit_time = arrivals[i] + buffers[i]
+
+        for j in range(i+1, len(arrivals)):
+            if arrival < arrivals[j] and arrivals[j] < exit_time:
+                buffers_pr_time[count_of_programs] += arrivals[j] - arrival
+                count_of_programs += 1
+                arrival = arrivals[j]
+
+        buffers_pr_time[count_of_programs] += exit_time - arrival
+    return buffers_pr_time
+
 
 time_in_buffer_each = get_programs_time_in_buffer(T_Z, T_S)
-print("Время в буфере")
+buffers_pt_time = get_time_in_buffer_together(T_Z, time_in_buffer_each)
+
+print("Время в буфере нескольких программ одновременно")
+for i in range(1, len(buffers_pt_time)):
+    print(f"{i} программ одновременно: {buffers_pt_time[i]}")
+
+print()
+print("Время в буфере каждой программы")
 print(time_in_buffer_each)
+
 
 #------------------- TASK 5 ---------------------------
 print("------------------- TASK 5 ---------------------------")

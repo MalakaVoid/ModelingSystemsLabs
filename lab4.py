@@ -136,6 +136,15 @@ for each in time_in_buffer_each:
     probability = each / sum(time_in_buffer_each)
     print(f"Вероятность нахождения в буфере программы {tmp}: {probability}")
     tmp += 1
+
+print()
+print("Вероятность нахождения количества заявок в буфере одновременно")
+probability = 1
+for i in range(1, len(buffers_pt_time)):
+    if probability == 0:
+        probability = 1
+    probability = buffers_pt_time[i] / sum(buffers_pt_time)
+    print(f"Вероятность нахождения в буфере {i} программ: {probability}")
 #------------------ Task 6 ---------------------------
 print("------------------- TASK 6 ---------------------------")
 def generate_requests_sequence(n, lambda_param):
@@ -172,7 +181,12 @@ print(processing_times_sequence)
 print("------------------- TASK 7 ---------------------------")
 
 time_in_buffer_each = get_programs_time_in_buffer(requests_sequence, processing_times_sequence)
-print("Время в буффере")
+buffers_pt_time = get_time_in_buffer_together(T_Z, time_in_buffer_each)
+
+print("Время в буфере нескольких программ одновременно")
+for i in range(1, len(buffers_pt_time)):
+    print(f"{i} программ одновременно: {buffers_pt_time[i]}")
+print("Время в буфере каждой программы")
 print(time_in_buffer_each)
 
 print("Вероятность нахождения заявок в буфере")
@@ -184,3 +198,12 @@ for each in time_in_buffer_each:
     probability = each / sum(time_in_buffer_each)
     print(f"Вероятность нахождения в буфере программы {tmp}: {probability}")
     tmp += 1
+
+print()
+print("Вероятность нахождения количества заявок в буфере одновременно")
+probability = 1
+for i in range(1, len(buffers_pt_time)):
+    if probability == 0:
+        probability = 1
+    probability = buffers_pt_time[i] / sum(buffers_pt_time)
+    print(f"Вероятность нахождения в буфере {i} программ: {probability}")
